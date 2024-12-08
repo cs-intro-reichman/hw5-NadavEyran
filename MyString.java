@@ -9,7 +9,7 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         //// Put your other tests here.
-        System.out.println(remove("meet","committee"));
+        //System.out.println(remove("abc","b"));
     }
 
     /**
@@ -44,23 +44,17 @@ public class MyString {
     public static boolean subsetOf(String str1, String str2) {
         for (int i = 0; i < str1.length(); i++) {
             char currentChar = str1.charAt(i);
-            boolean found = false;
+            
+            int index = str2.indexOf(currentChar);
 
-            for (int j = 0; j < str2.length(); j++) {
-                if (currentChar == str2.charAt(j)) {
-                    found = true;
-                    break;
-                }
+            if (index == -1) {
+                return false;
             }
 
-        if (!found) {
-            return false;
+           str2 = str2.substring(0, index) + str2.substring(index + 1);
         }
-    }
-
-    return true;
-}
-
+        return true;
+    } 
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -119,28 +113,19 @@ public class MyString {
      * @param str2 - a string
      * @return a string consisting of str1 minus all the characters of str2
      */
-     public static String remove(String str1, String str2) {
-        String newStr = "";
 
-        for (int i = 0; i < str2.length(); i++) {
-            char currentChar = str2.charAt(i);
-            boolean found = false;
+  public static String remove(String str1, String str2) {
+    for (int i = 0; i < str2.length(); i++) {
+        char currentChar = str2.charAt(i);
 
-            for (int j = 0; j < str1.length(); j++) {
-                if (currentChar == str1.charAt(j)) {
-                    found = true;
-                    str1 = str1.substring(0, j) + str1.substring(j + 1);
-                    break;
-                }
-            }
-
-            if (!found) {
-                newStr += currentChar;
-            }
+        while (str1.indexOf(currentChar) != -1) {
+            int index = str1.indexOf(currentChar);
+            str1 = str1.substring(0, index) + str1.substring(index + 1);
         }
-
-        return newStr;
     }
+
+    return str1;
+}
 
     /**
      * Returns a string consisting of the given string, with the given 
