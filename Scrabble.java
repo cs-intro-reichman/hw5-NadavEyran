@@ -112,7 +112,6 @@ public class Scrabble {
 
 	    return hand.toString();
 	}
-
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
     // 1. The letters in the word are removed from the hand, which becomes smaller.
