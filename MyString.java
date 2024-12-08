@@ -9,6 +9,7 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         //// Put your other tests here.
+        System.out.println(remove("meet","committee"));
     }
 
     /**
@@ -40,20 +41,17 @@ public class MyString {
      * @param str2 - a string
      * @return true is str1 is a subset of str2, false otherwise
      */
-public static boolean subsetOf(String str1, String str2) {
-    StringBuilder str2Builder = new StringBuilder(str2);
+    public static boolean subsetOf(String str1, String str2) {
+        for (int i = 0; i < str1.length(); i++) {
+            char currentChar = str1.charAt(i);
+            boolean found = false;
 
-    for (int i = 0; i < str1.length(); i++) {
-        char currentChar = str1.charAt(i);
-        boolean found = false;
-
-        for (int j = 0; j < str2Builder.length(); j++) {
-            if (currentChar == str2Builder.charAt(j)) {
-                str2Builder.deleteCharAt(j);
-                found = true;
-                break;
+            for (int j = 0; j < str2.length(); j++) {
+                if (currentChar == str2.charAt(j)) {
+                    found = true;
+                    break;
+                }
             }
-        }
 
         if (!found) {
             return false;
@@ -121,17 +119,17 @@ public static boolean subsetOf(String str1, String str2) {
      * @param str2 - a string
      * @return a string consisting of str1 minus all the characters of str2
      */
-    public static String remove(String str1, String str2) {
+     public static String remove(String str1, String str2) {
         String newStr = "";
 
-        // עבור על כל תו ב-str1
-        for (int i = 0; i < str1.length(); i++) {
-            char currentChar = str1.charAt(i);
+        for (int i = 0; i < str2.length(); i++) {
+            char currentChar = str2.charAt(i);
             boolean found = false;
 
-            for (int j = 0; j < str2.length(); j++) {
-                if (currentChar == str2.charAt(j)) {
+            for (int j = 0; j < str1.length(); j++) {
+                if (currentChar == str1.charAt(j)) {
                     found = true;
+                    str1 = str1.substring(0, j) + str1.substring(j + 1);
                     break;
                 }
             }
@@ -143,7 +141,6 @@ public static boolean subsetOf(String str1, String str2) {
 
         return newStr;
     }
-
 
     /**
      * Returns a string consisting of the given string, with the given 
