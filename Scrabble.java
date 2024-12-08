@@ -77,7 +77,10 @@ public class Scrabble {
 	    int score = 0;
 
 	    for (int i = 0; i < word.length(); i++) {
-	        score += SCRABBLE_LETTER_VALUES[word.charAt(i) - 'a'];
+	        char c = word.charAt(i);
+	        if (c >= 'a' && c <= 'z') {
+	            score += SCRABBLE_LETTER_VALUES[c - 'a'];
+	        }
 	    }
 
 	    if (word.length() == HAND_SIZE) {

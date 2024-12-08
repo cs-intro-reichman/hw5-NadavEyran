@@ -40,17 +40,20 @@ public class MyString {
      * @param str2 - a string
      * @return true is str1 is a subset of str2, false otherwise
      */
-    public static boolean subsetOf(String str1, String str2) {
-        for (int i = 0; i < str1.length(); i++) {
-            char currentChar = str1.charAt(i);
-            boolean found = false;
+public static boolean subsetOf(String str1, String str2) {
+    StringBuilder str2Builder = new StringBuilder(str2);
 
-            for (int j = 0; j < str2.length(); j++) {
-                if (currentChar == str2.charAt(j)) {
-                    found = true;
-                    break;
-                }
+    for (int i = 0; i < str1.length(); i++) {
+        char currentChar = str1.charAt(i);
+        boolean found = false;
+
+        for (int j = 0; j < str2Builder.length(); j++) {
+            if (currentChar == str2Builder.charAt(j)) {
+                str2Builder.deleteCharAt(j);
+                found = true;
+                break;
             }
+        }
 
         if (!found) {
             return false;
@@ -119,24 +122,28 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
         String newStr = "";
 
-        for (int i = 0; i < str2.length(); i++ ) {
+        // עבור על כל תו ב-str1
+        for (int i = 0; i < str1.length(); i++) {
+            char currentChar = str1.charAt(i);
             boolean found = false;
 
-            for (int j = 0; j < str1.length(); j++ ) {
-                if (str2.charAt(i) == str1.charAt(j)) {
+            for (int j = 0; j < str2.length(); j++) {
+                if (currentChar == str2.charAt(j)) {
                     found = true;
                     break;
                 }
             }
-            if (found == false) {
-                newStr = newStr + str2.charAt(i);
+
+            if (!found) {
+                newStr += currentChar;
             }
         }
+
         return newStr;
     }
+
 
     /**
      * Returns a string consisting of the given string, with the given 
