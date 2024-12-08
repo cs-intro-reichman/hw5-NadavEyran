@@ -9,7 +9,7 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         //// Put your other tests here.
-        //System.out.println(remove("abc","b"));
+        System.out.println(remove("meet","committee"));
     }
 
     /**
@@ -113,19 +113,22 @@ public class MyString {
      * @param str2 - a string
      * @return a string consisting of str1 minus all the characters of str2
      */
+    public static String remove(String str1, String str2) {
+        String result = str2;
 
-  public static String remove(String str1, String str2) {
-    for (int i = 0; i < str2.length(); i++) {
-        char currentChar = str2.charAt(i);
+        for (int i = 0; i < str1.length(); i++) {
+            char charToRemove = str1.charAt(i);
 
-        while (str1.indexOf(currentChar) != -1) {
-            int index = str1.indexOf(currentChar);
-            str1 = str1.substring(0, index) + str1.substring(index + 1);
+            for (int j = 0; j < result.length(); j++) {
+                if (result.charAt(j) == charToRemove) {
+                    result = result.substring(0, j) + result.substring(j + 1);
+                    break;
+                }
+            }
         }
-    }
 
-    return str1;
-}
+        return result;
+    }
 
     /**
      * Returns a string consisting of the given string, with the given 
