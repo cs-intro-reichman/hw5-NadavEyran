@@ -10,6 +10,8 @@ public class MyString {
         System.out.println(spacedString(hello));
         //// Put your other tests here.
         System.out.println(remove("meet","committee"));
+        System.out.println(remove("abc","b"));
+        System.out.println(remove("b","abc"));
     }
 
     /**
@@ -114,6 +116,7 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
+        if (str1.length() <= str2.length()) {
         String result = str2;
 
         for (int i = 0; i < str1.length(); i++) {
@@ -127,7 +130,22 @@ public class MyString {
             }
         }
 
-        return result;
+            return result;
+        } else {
+             String result = str1;
+
+            for (int i = 0; i < str2.length(); i++) {
+                char charToRemove = str2.charAt(i);
+
+                for (int j = 0; j < result.length(); j++) {
+                    if (result.charAt(j) == charToRemove) {
+                        result = result.substring(0, j) + result.substring(j + 1);
+                        break;
+                    }
+                } 
+            }
+            return result;
+        }
     }
 
     /**
