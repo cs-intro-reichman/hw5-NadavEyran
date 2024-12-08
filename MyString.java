@@ -20,14 +20,19 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int count = 0;
+        for (int i = 0; i<str.length(); i++ ) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
      *  Examples:
      *  subsetOf("sap","space") returns true
-     *  subsetOf("spa","space") returns false
+     *  subsetOf("spa","space") returns true
      *  subsetOf("pass","space") returns false
      *  subsetOf("c","space") returns true
      *
@@ -36,9 +41,25 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        for (int i = 0; i < str1.length(); i++) {
+            char currentChar = str1.charAt(i);
+            boolean found = false;
+
+            for (int j = 0; j < str2.length(); j++) {
+                if (currentChar == str2.charAt(j)) {
+                    found = true;
+                    break;
+                }
+            }
+
+        if (!found) {
+            return false;
+        }
     }
+
+    return true;
+}
+
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -50,7 +71,20 @@ public class MyString {
      */
     public static String spacedString(String str) {
         //// Replace the following statement with your code
-        return null;
+        int StrLength = str.length();
+        String newStr = "";
+
+            for (int i = 0; i < StrLength ;i++) {
+
+                if (i < StrLength - 1) {
+                    newStr = newStr + str.charAt(i) + " ";
+                }
+
+                if (i == StrLength - 1) {
+                    newStr = newStr + str.charAt(i);
+                }
+            }
+        return newStr;
     }
   
     /**
@@ -65,7 +99,14 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
-        return null;
+        String newStr = "";
+
+        for (int i = 0; i < n; i++ ) {
+            int random = (int) (97 + (26 * Math.random()));
+            char randomChar = (char) random;
+            newStr = newStr + randomChar;
+        }
+        return newStr;
     }
 
     /**
@@ -79,7 +120,22 @@ public class MyString {
      */
     public static String remove(String str1, String str2) {
        //// Replace the following statement with your code
-        return null;
+        String newStr = "";
+
+        for (int i = 0; i < str2.length(); i++ ) {
+            boolean found = false;
+
+            for (int j = 0; j < str1.length(); j++ ) {
+                if (str2.charAt(i) == str1.charAt(j)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found == false) {
+                newStr = newStr + str2.charAt(i);
+            }
+        }
+        return newStr;
     }
 
     /**
