@@ -9,6 +9,9 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         //// Put your other tests here.
+        System.out.println(remove("meet","committee"));
+        System.out.println(remove("abc","b"));
+        System.out.println(remove("b","abc"));
     }
 
     /**
@@ -20,14 +23,19 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int count = 0;
+        for (int i = 0; i<str.length(); i++ ) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
      *  Examples:
      *  subsetOf("sap","space") returns true
-     *  subsetOf("spa","space") returns false
+     *  subsetOf("spa","space") returns true
      *  subsetOf("pass","space") returns false
      *  subsetOf("c","space") returns true
      *
@@ -36,9 +44,19 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
-    }
+        for (int i = 0; i < str1.length(); i++) {
+            char currentChar = str1.charAt(i);
+            
+            int index = str2.indexOf(currentChar);
+
+            if (index == -1) {
+                return false;
+            }
+
+           str2 = str2.substring(0, index) + str2.substring(index + 1);
+        }
+        return true;
+    } 
 
     /** Returns a string which is the same as the given string, with a space
      * character inserted after each character in the given string, except
@@ -50,7 +68,20 @@ public class MyString {
      */
     public static String spacedString(String str) {
         //// Replace the following statement with your code
-        return null;
+        int StrLength = str.length();
+        String newStr = "";
+
+            for (int i = 0; i < StrLength ;i++) {
+
+                if (i < StrLength - 1) {
+                    newStr = newStr + str.charAt(i) + " ";
+                }
+
+                if (i == StrLength - 1) {
+                    newStr = newStr + str.charAt(i);
+                }
+            }
+        return newStr;
     }
   
     /**
@@ -65,7 +96,14 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
-        return null;
+        String newStr = "";
+
+        for (int i = 0; i < n; i++ ) {
+            int random = (int) (97 + (26 * Math.random()));
+            char randomChar = (char) random;
+            newStr = newStr + randomChar;
+        }
+        return newStr;
     }
 
     /**
@@ -78,8 +116,36 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        if (str1.length() <= str2.length()) {
+        String result = str2;
+
+        for (int i = 0; i < str1.length(); i++) {
+            char charToRemove = str1.charAt(i);
+
+            for (int j = 0; j < result.length(); j++) {
+                if (result.charAt(j) == charToRemove) {
+                    result = result.substring(0, j) + result.substring(j + 1);
+                    break;
+                }
+            }
+        }
+
+            return result;
+        } else {
+             String result = str1;
+
+            for (int i = 0; i < str2.length(); i++) {
+                char charToRemove = str2.charAt(i);
+
+                for (int j = 0; j < result.length(); j++) {
+                    if (result.charAt(j) == charToRemove) {
+                        result = result.substring(0, j) + result.substring(j + 1);
+                        break;
+                    }
+                } 
+            }
+            return result;
+        }
     }
 
     /**
