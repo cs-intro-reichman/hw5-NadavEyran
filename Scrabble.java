@@ -92,6 +92,10 @@ public class Scrabble {
 	        score += 1000;
 	    }
 
+	    if (word.length() == HAND_SIZE ) {
+        	score += 50;
+    	}
+
 	    return score;
 	}
 
