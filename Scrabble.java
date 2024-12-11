@@ -74,21 +74,17 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-	    if (word == "") return 0;
+	    if (word == null || word.isEmpty()) return 0;
 
 	    int score = 0;
 	    for (int i = 0; i < word.length(); i++) {
-	        char CH = word.charAt(i);
-	        if (CH >= 'a' && CH <= 'z') {
-	            score += SCRABBLE_LETTER_VALUES[CH - 'a'];
+	        char c = word.charAt(i);
+	        if (c >= 'a' && c <= 'z') {
+	            score += SCRABBLE_LETTER_VALUES[c - 'a'];
 	        }
 	    }
 
 	    score *= word.length();
-
-	    if (word.length() == HAND_SIZE) {
-	        score += 50;
-	    }
 
 	    if (word.contains("r") && word.contains("u") && word.contains("n") && word.contains("i")) {
 	        score += 1000;
@@ -96,7 +92,6 @@ public class Scrabble {
 
 	    return score;
 	}
-
 
 
 
@@ -138,11 +133,6 @@ public class Scrabble {
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
 			String input = in.readString();
-			if (input.equals(".")) {
-				break;
-			} else if (!MyString.subsetOf(input, jand)) {
-				
-			}
 			//// Replace the following break statement with code
 			//// that completes the hand playing loop
 			break;
